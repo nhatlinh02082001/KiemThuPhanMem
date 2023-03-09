@@ -1,0 +1,23 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Đăng nhập người dùng{% endblock %}
+
+{% block content %}
+<br>
+<h1 class="text-center text-info">Đề tài quản lý học sinh</h1>
+
+<div class="row">
+    <div class="card-body col-md-6 text-center">
+        <div class="tagA border">
+            <a href="/login" class="bg-">Đăng nhập người dùng</a>
+        </div>
+    </div>
+    <div class="card-body col-md-6 text-center">
+        <div class="tagA border">
+            <a href="{{ url_for('admin-login') }}">Đăng nhập quản trị</a>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Tiếp nhận học sinh{% endblock %}
+
+{% block content %}
+<br>
+<h1 class="text-center text-info">HỒ SƠ HỌC SINH</h1>
+
+<div class="row mt-5">
+    <div class="col-xl-3 col-sm-6 col-12 d-flex">
+        <div class="card bg-one w-100">
+            <a href="{{ url_for('add-student')}}">
+                <div class="card-body">
+                    <div class="db-widgets d-flex justify-content-between align-items-center">
+                        <div class="db-icon">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div class="db-info">
+                            <h6>Tiếp nhận học sinh</h6>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-xl-3 col-sm-6 col-12 d-flex">
+        <div class="card bg-three w-100">
+            <a href="{{ url_for('add-student-to-class')}}">
+                <div class="card-body">
+                    <div class="db-widgets d-flex justify-content-between align-items-center">
+                        <div class="db-icon">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div class="db-info text-left">
+                            <h6>Lập danh sách lớp học</h6>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

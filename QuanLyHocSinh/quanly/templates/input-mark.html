@@ -1,0 +1,65 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Nhập điểm{% endblock %}
+
+{% block content %}
+<h2 class="text-center text-info mt-5">NHẬP ĐIỂM MÔN {{ subject.name}}</h2>
+<h4 class="">Học sinh: Huỳnh Nhật Vỹ</h4>
+
+{% if msg %}
+    {% if flag == 0 %}
+    <div class="alert alert-success">
+        <h4>{{ msg }}</h4>
+    </div>
+    {% elif flag == 2 %}
+    <div class="alert alert-info">
+        <h4>{{ msg }}</h4>
+    </div>
+    {% else %}
+    <div class="alert alert-danger">
+        <h4>{{ msg }}</h4>
+    </div>
+    {% endif %}
+{% endif %}
+
+<form method="post" action="{{ url_for('input-mark', subject_id=subject.id, student_id=student.id) }}">
+    <div class="form-group">
+        <label for="type_mark">Loại điểm</label>
+        {% if type_mark %}
+        <select name="type_mark" class="custom-select">
+            {% for t in type_mark %}
+            <option value={{t.id}}>{{ t.name}}</option>
+            {% endfor %}
+        </select>
+        {% endif %}
+    </div>
+    <div class="form-group">
+        <label for="mark">Điểm</label>
+        <input type="text" class="form-control" id="phone-number" name="mark"
+               placeholder="Nhập số điểm học sinh" required>
+    </div>
+    <div class="form-group">
+        <label for="semester">Học kỳ</label>
+        {% if semester %}
+        <select name="semester" class="custom-select">
+            {% for se in semester %}
+            <option value={{se.id}}>{{ se.name}}</option>
+            {% endfor %}
+        </select>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Nhập điểm" class="btn btn-primary">
+    </div>
+</form>
+
+<form action="{{ url_for('teacher') }}">
+    <div class="form-group">
+        <input type="submit" value="Thoát" class="btn btn-secondary"
+          onclick="return confirm('Bạn có chắc chắn muốn thoát không?')"
+        />
+    </div>
+</form>
+
+{% endblock %}

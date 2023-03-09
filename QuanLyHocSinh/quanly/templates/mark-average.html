@@ -1,0 +1,32 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Điểm trung bình{% endblock %}
+
+{% block content %}
+<h1 class="text-center text-info mt-5">BẢNG ĐIỂM TRUNG BÌNH</h1>
+{% if msg %}
+<h6 class="text text-danger" id="msg">{{msg}}</h6>
+{% endif %}
+
+<div class="container">
+    <div class="table-responsive">
+        <table class="table table-bordered table-sm">
+            <thead>
+            <tr>
+                <th>STT</th>
+                <th>Họ và tên</th>
+                <th>Học kỳ I</th>
+                <th>Học kỳ II</th>
+            </tr>
+            </thead>
+            <tbody id="show-mark">
+            </tbody>
+        </table>
+
+    </div>
+    <div class="row">
+        <a class="btn btn-danger" href="">Thoát</a>
+    </div>
+</div>
+<br>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Thêm học sinh{% endblock %}
+
+{% block content %}
+<h2 class="text-center text-danger mt-5">THÔNG TIN HỌC SINH</h2>
+
+{% if msg %}
+    {% if flag == 0 %}
+    <div class="alert alert-success">
+        <h4>{{ msg }}</h4>
+    </div>
+    {% else %}
+    <div class="alert alert-danger">
+        <h4>{{ msg }}</h4>
+    </div>
+    {% endif %}
+{% endif %}
+
+<form method="post" action="{{ url_for('add-student')}}">
+    <div class="form-group">
+        <label for="name">Họ và tên: </label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Nhập họ và tên của học sinh" required>
+    </div>
+    <div class="form-group">
+        <label for="gender">Giới tính: </label>
+        <select name="gender" class="custom-select">
+            <option selected value="male">Nam</option>
+            <option value="female">Nữ</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="day-of-birth">Ngày sinh: </label>
+        <input type="date" class="form-control" id="day-of-birth" name="date_of_birth" required>
+    </div>
+    <div class="form-group">
+        <label for="address">Địa chỉ: </label>
+        <input type="text" class="form-control" id="address" name="address" placeholder="Nhập địa chỉ" required>
+    </div>
+    <div class="form-group">
+        <label for="email">Email: </label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="Nhập Email học sinh"
+               required>
+    </div>
+    <div class="form-group">
+        <label for="phone">Số điện thoại: </label>
+        <input type="text" class="form-control" id="phone" name="phone"
+               placeholder="Nhập số điện thoại học sinh" required>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Thêm học sinh" class="btn btn-primary">
+    </div>
+</form>
+
+
+<form action="{{ url_for('employee')}}">
+    <div class="form-group">
+        <input type="submit" value="Thoát" class="btn btn-secondary"
+          onclick="return confirm('Bạn có chắc chắn muốn thoát không?')"
+        />
+    </div>
+</form>
+
+{% endblock %}
+
+

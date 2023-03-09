@@ -1,0 +1,38 @@
+.shadow {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.tagA a {
+    padding: 10px 0;
+    display: block;
+    text-decoration: none;
+    color: black;
+}
+
+.tagA:hover {
+    background-color: lightblue;
+    transform: scale(1.1);
+    transition: 0.5s;
+}
+
+.cards {
+    with: 100%;
+    border: 1px solid black;
+}
+
+.anh {
+    width:10px;
+    height: 10px;
+}
+
+.btnExit {
+    with
+}
+
+.margin-top {
+    margin-top: 50px;
+}
+
+.giua {
+     vertical-align: center;
+}

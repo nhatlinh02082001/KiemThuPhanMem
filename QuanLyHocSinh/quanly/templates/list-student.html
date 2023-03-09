@@ -1,0 +1,57 @@
+{% extends 'layout/base.html' %}
+
+{% block title %} Danh sách học sinh {% endblock %}
+
+{% block content %}
+<h2 class="text-center text-info margin-top">DANH SÁCH HỌC SINH LỚP {{ class_room.name }}</h2>
+<div class="container mt-3 table-responsive">
+    <h2 class="text-body ">Giáo viên chủ nhiệm: {{ user_teacher.name }}</h2>
+    <h2 class="text-body">Sỉ số lớp: {{ class_room.quantity }}</h2>
+    <input class="form-control mt-4 mb-4" id="myInput" type="text" placeholder="Tìm kiếm...">
+    <table class="table table-hover table-sm table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>STT</th>
+            <th>Họ và tên</th>
+            <th>Ngày sinh</th>
+            <th>Giới tính</th>
+            <th>Địa chỉ</th>
+            <th>Email</th>
+            <th>Số điện thoại</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody id="myTable">
+        {% if students %}
+        {% for student in students %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{student.name}}</td>
+            <td>{{student.date_of_birth.strftime("%d/%m/%Y")}}</td>
+            {% if student.gender == Gender.MALE %}
+            <td>Nam</td>
+            {% else %}
+            <td>Nữ</td>
+            {% endif %}
+            <td>{{ student.address }}</td>
+            <td>{{ student.email }}</td>
+            <td>{{ student.phone }}</td>
+            <td><a href="{{ url_for('update-info', student_id=student.id) }}">Chỉnh sửa</a></td>
+            <td>
+                <input type="button" value="Xóa" class="btn btn-danger" onclick="deleteStudent({{ student.id }})">
+            </td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+        </tbody>
+    </table>
+    <form action="{{ url_for('teacher')}}">
+        <div class="form-group">
+            <input type="submit" value="Thoát" class="btn btn-secondary"
+              onclick="return confirm('Bạn có chắc chắn muốn thoát không?')"
+            />
+        </div>
+    </form>
+</div>
+{% endblock %}

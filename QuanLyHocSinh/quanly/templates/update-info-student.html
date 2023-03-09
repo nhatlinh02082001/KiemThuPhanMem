@@ -1,0 +1,51 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Cập nhật thông tin học sinh{% endblock %}
+
+{% block content %}
+<h1 class="text-center text-info mt-5">Chỉnh sửa thông tin học sinh {{ student.name }}</h1>
+
+{% if msg %}
+<div class="alert alert-danger"><h4>{{ msg }}</h4></div>
+{% endif %}
+
+<form method="post" action="{{ url_for('update-info', student_id=student.id) }}">
+    <div class="form-group">
+        <label for="name">Họ và tên: </label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="{{student.name}}">
+    </div>
+    <div class="form-group">
+        <label for="gender">Giới tính: </label>
+        <select name="gender" class="custom-select" >
+            {% if student.gender == gender.MALE %}
+            <option selected value="male">Nam</option>
+            <option value="female">Nữ</option>
+            {% else %}
+            <option value="male">Nam</option>
+            <option selected value="female">Nữ</option>
+            {% endif %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="day-of-birth">Ngày sinh: </label>
+        <input type="date" class="form-control" id="date-of-birth" name="date_of_birth" value="{{ student.date_of_birth.strftime('%Y-%m-%d') }}">
+    </div>
+    <div class="form-group">
+        <label for="address">Địa chỉ: </label>
+        <input type="text" class="form-control" id="address" name="address" placeholder="{{ student.address }}">
+    </div>
+    <div class="form-group">
+        <label for="email">Email: </label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="{{student.email}}">
+    </div>
+    <div class="form-group">
+        <label for="phone-number">Số điện thoại: </label>
+        <input type="text" class="form-control" id="phone" name="phone" placeholder="{{ student.phone }}">
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Cập nhật" class="btn btn-primary">
+    </div>
+
+</form>
+
+{% endblock %}

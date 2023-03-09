@@ -1,0 +1,64 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Giáo viên{% endblock %}
+
+{% block content %}
+<br>
+<h2 class="text-center text-danger">Giáo viên</h2>
+
+<div class="row mt-5">
+    <div class="col-xl-3 col-sm-6 col-12 d-flex">
+        <div class="card bg-one w-100">
+            <a href="{{ url_for('list-student')}}">
+                <div class="card-body">
+                    <div class="db-widgets d-flex justify-content-between align-items-center">
+                        <div class="db-icon">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div class="db-info">
+                            <h6>Danh sách học sinh</h6>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-xl-3 col-sm-6 col-12 d-flex">
+        <div class="card bg-three w-100">
+            <a href="{{ url_for('mark-average') }}">
+                <div class="card-body">
+                    <div class="db-widgets d-flex justify-content-between align-items-center">
+                        <div class="db-icon">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div class="db-info text-left">
+                            <h6>Xem điểm trung bình</h6>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    {% if subjects %}
+    {% for s in subjects %}
+    <div class="col-xl-3 col-sm-6 col-12 d-flex">
+        <div class="card bg-two w-100">
+            <a href="{{ url_for('mark-display', subject_id=s.id, semester_id=1) }}">
+                <div class="card-body">
+                    <div class="db-widgets d-flex justify-content-between align-items-center">
+                        <div class="db-icon">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div class="db-info text-left">
+                            <h6>Điểm môn {{ s.name }}</h6>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+</div>
+{% endblock %}

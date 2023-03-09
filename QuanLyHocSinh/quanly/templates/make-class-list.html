@@ -1,0 +1,63 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Lập danh sách lớp Học{% endblock %}
+
+{% block content %}
+<h1 class="text-center text-info">LẬP DANH SÁCH LỚP</h1>
+
+{% if msg %}
+    {% if flag == 0 %}
+    <div class="alert alert-success">
+        <h4>{{ msg }}</h4>
+    </div>
+    {% else %}
+    <div class="alert alert-danger">
+        <h4>{{ msg }}</h4>
+    </div>
+    {% endif %}
+{% endif %}
+
+<form method="post" action="{{ url_for('add-student-to-class')}}">
+<!--    <div class="form-group">-->
+<!--        <label class="col-md-2 text-secondary" for="gender">Chọn khối: </label>-->
+<!--        <select name="grade" class="custom-select col-md-2">-->
+<!--            {% if grade_list %}-->
+<!--            {% for grade in grade_list %}-->
+<!--            <option>{{ grade.name }}</option>-->
+<!--            {% endfor %}-->
+<!--            {% endif %}-->
+<!--        </select>-->
+<!--    </div>-->
+    <div class="form-group">
+        <label class="col-md-2 text-secondary" for="gender">Chọn lớp: </label>
+        <select name="classes" class="custom-select col-md-6" id="classroom">
+            {% if class_school_year %}
+            {% for c in class_school_year %}
+            <option value={{ c.id }}>{{ c.name }} - Năm học {{ c.school_year.name}}</option>
+            {% endfor %}
+            {% endif %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 text-secondary" for="gender">Chọn học sinh: </label>
+        <select name="student" class="custom-select col-md-6" id="students">
+            {% if students %}
+            {% for s in students %}
+            <option value={{ s.id }}>{{ s.id}} - {{ s.name }} - {{ s.date_of_birth.strftime("%d/%m/%Y")}}</option>
+            {% endfor %}
+            {% endif %}
+        </select>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Thêm học sinh" class="btn btn-primary">
+    </div>
+</form>
+
+<form action="{{ url_for('employee')}}">
+    <div class="form-group">
+        <input type="submit" value="Thoát" class="btn btn-secondary"
+               onclick="return confirm('Bạn có chắc chắn muốn thoát không?')"
+        />
+    </div>
+</form>
+{% endblock %}
